@@ -24,9 +24,6 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Setup Android SDK Tools
-        uses: android-actions/setup-android@v3
-
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
@@ -38,12 +35,10 @@ jobs:
           npx cap add android || true
           npx cap sync android
 
-      - name: Grant Execute Permission to Gradle
-        run: chmod +x android/gradlew
-
       - name: Build Standalone Debug APK
         run: |
           cd android
+          chmod +x gradlew
           ./gradlew assembleDebug --stacktrace
 
       - name: Upload Debug APK Artifact
