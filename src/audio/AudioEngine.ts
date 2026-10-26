@@ -111,7 +111,8 @@ export class AuraAudioEngine {
 
     // Tube Amp Pro (Soft Harmonic Saturation)
     this.tubeShaper = this.ctx.createWaveShaper();
-    this.tubeShaper.curve = this.buildTubeCurve(25);
+    // Cast with 'as any' to satisfy TypeScript 5.5+ ArrayBuffer typing
+    this.tubeShaper.curve = this.buildTubeCurve(25) as any;
     this.tubeShaper.oversample = '4x';
     this.tubeDryGain = this.ctx.createGain();
     this.tubeWetGain = this.ctx.createGain();
