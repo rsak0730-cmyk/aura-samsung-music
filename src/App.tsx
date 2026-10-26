@@ -446,6 +446,8 @@ export default function App() {
       </header>
 
       <nav className="relative z-10 flex space-x-6 px-6 py-2.5 overflow-x-auto no-scrollbar border-b border-white/5 bg-white/[0.02]">
+        {/* Samsung One UI 6/7 Liquid Glass Capsule Tab Bar */}
+      <nav className="relative z-10 flex space-x-2 px-4 py-2.5 overflow-x-auto no-scrollbar border-b border-white/10 bg-white/[0.03] backdrop-blur-xl">
         {[
           { id: 'tracks', label: 'Tracks' },
           { id: 'smart', label: 'Smart Playlists' },
@@ -457,17 +459,26 @@ export default function App() {
           { id: 'composers', label: 'Composers' },
           { id: 'audiobooks', label: 'Audio Books' },
           { id: 'youtube', label: 'YouTube Window' },
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`whitespace-nowrap pb-1 text-xs uppercase tracking-wider font-semibold transition-all border-b-2 ${
-              activeTab === tab.id ? 'border-blue-400 text-white font-bold' : 'border-transparent text-white/40 hover:text-white/70'
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
+        ].map((tab) => {
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => {
+                triggerHaptic();
+                setActiveTab(tab.id);
+              }}
+              className={`whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-200 border ${
+                isActive
+                  ? 'bg-blue-600/30 border-blue-400 text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.35)] scale-102'
+                  : 'bg-white/[0.04] border-white/5 text-white/50 hover:text-white/80 hover:bg-white/[0.08]'
+              }`}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
+      </nav>
       </nav>
 
       <main className="relative z-10 flex-1 overflow-y-auto px-6 py-4 no-scrollbar">
