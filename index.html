@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>Samsung Music Aura</title>
+    <!-- Tailwind Engine CDN Fallback -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              samsung: {
+                blue: '#2c8cfb',
+                dark: '#07090e'
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Base safety reset */
+      html, body {
+        background-color: #07090e !important;
+        color: #ffffff !important;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      /* Prevent unstyled images from blowing up */
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      /* Ensure file input is never visible */
+      input[type="file"].hidden {
+        display: none !important;
+      }
+    </style>
   </head>
-  <body class="bg-[#07090e] text-white selection:bg-blue-500 selection:text-white antialiased overflow-hidden select-none">
+  <body class="bg-[#07090e] text-white overflow-hidden select-none">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
